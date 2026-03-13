@@ -196,7 +196,7 @@ func (c *external) Observe(ctx context.Context, mg resource.Managed) (managed.Ex
 	observeRequestDetails, err := request.IsUpToDate(svcCtx, crCtx)
 	if err != nil && err.Error() == observe.ErrObjectNotFound {
 		return managed.ExternalObservation{
-			ResourceExists: false,
+			ResourceExists: true,
 		}, nil
 	}
 
