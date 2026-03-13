@@ -187,7 +187,7 @@ func (c *external) Observe(ctx context.Context, mg resource.Managed) (managed.Ex
 	if meta.WasDeleted(mg) {
 		c.logger.Debug("Request is being deleted, skipping observation")
 		return managed.ExternalObservation{
-			ResourceExists: false,
+			ResourceExists: true,
 		}, nil
 	}
 
@@ -196,7 +196,7 @@ func (c *external) Observe(ctx context.Context, mg resource.Managed) (managed.Ex
 	observeRequestDetails, err := request.IsUpToDate(svcCtx, crCtx)
 	if err != nil && err.Error() == observe.ErrObjectNotFound {
 		return managed.ExternalObservation{
-			ResourceExists: true,
+			ResourceExists: false,
 		}, nil
 	}
 
